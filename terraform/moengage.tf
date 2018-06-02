@@ -2,7 +2,7 @@
 
 
 resource "aws_iam_user" "user" {
-  name = "moengage"
+  name = "MoEngage"
   
 }
 
