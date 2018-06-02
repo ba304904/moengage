@@ -1,0 +1,19 @@
+version: 0.2
+
+env:
+  variables:
+    S3_BUCKET: "ecs-refarch-cloudformation"
+
+phases:
+
+  pre_build: 
+    commands:
+
+      # Validate all of the CloudFormation templates
+      - chmod a+x ./tests/validate-templates.sh
+      - ./tests/validate-templates.sh
+
+  build:
+    commands:
+
+

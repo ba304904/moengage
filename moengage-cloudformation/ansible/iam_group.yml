@@ -1,0 +1,28 @@
+---
+
+- hosts: localhost
+  tasks:
+  
+  - name:  Create a group with users as members and attach a managed policy using its ARN
+    iam_group:
+      name: developers
+      managed_policy:
+        - arn:aws:iam::aws:policy/ReadOnlyAccess
+      users: "{{ item }}"
+            
+      state: present 
+    with_items:
+       - john
+       - tom
+   
+  - name:  Create a group with users as members and attach a managed policy using its ARN
+    iam_group:
+      name: devops
+      managed_policy:
+        - arn:aws:iam::aws:policy/AdministratorAccess
+      users: "{{ item }}"
+            
+      state: present 
+    with_items:
+       - erick
+       - micheal

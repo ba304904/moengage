@@ -1,0 +1,24 @@
+---
+
+- hosts: localhost
+  
+  vars:
+    temp_pass: test@123  
+  tasks:
+  
+     
+     - name: Create four new IAM users with API keys
+       iam:
+         iam_type: user
+         name: "{{ item }}"
+         state: present
+         password: "{{ temp_pass }}"
+         access_key_state: create
+       with_items:
+         - john
+         - tom
+         - erick
+         - micheal
+       connection: local
+       register: credentials
+     - debug: var=credentials 
