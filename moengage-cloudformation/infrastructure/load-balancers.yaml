@@ -63,8 +63,9 @@ Resources:
     Type: AWS::Route53::RecordSet
     Properties:
       SetIdentifier: geolocation
-      GeoLocation : Default
-      
+      GeoLocation: 
+        CountryCode: "*"
+        ContinentCode: "*"
       HostedZoneName: !Ref 'HostedZoneName'
       Comment: DNS name for my instance.
       Name: !Join ['', [!Ref 'Subdomain', ., !Ref 'HostedZoneName']]
@@ -85,6 +86,9 @@ Outputs:
 
     Listener:
         Description: A reference to a port 80 listener
-        Value: !Ref LoadBalancerListener  
+        Value: !Ref LoadBalancerListener 
+    DNSRecordUrl:
+        Description: The Url of DNS
+        Value: !GetAtt DnsRecord   
 
     
